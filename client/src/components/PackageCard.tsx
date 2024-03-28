@@ -43,15 +43,12 @@ const PackageCard: React.FC<PackageCardProps> = (props: PackageCardProps) => {
             try {
                 await Dataservice.updatePackage(props.package.name, props.package.installed_version, checked);
 
-                debugger;
                 setIsDevDepToggleLoading(false);
 
                 props.reRenderPackages();
 
                 return notify('Updated the package', `Successfully updated the package as ${checked ? 'dev' : 'normal'} dependency`, 'success');
             } catch (ex) {
-                console.log('imma here')
-                debugger;
                 const msg = `Error updating the package ${props.package.name}`;
 
                 console.error(msg, ex);
@@ -64,48 +61,36 @@ const PackageCard: React.FC<PackageCardProps> = (props: PackageCardProps) => {
         props.modifyListOfPackagesToInstall(props.package.name, selectedVersionToInstall, isDevPackage)
     }
 
-    function uninstallPackage(packageName: string) {
-        return new Promise(async (resolve, reject) => {
-            try {
-                await Dataservice.uninstallPackage(packageName);
+    async function uninstallPackage(packageName: string) {
+        try {
+            await Dataservice.uninstallPackage(packageName);
 
-                props.reRenderPackages();
+            props.reRenderPackages();
 
-                notify('Uninstalled Package', `Successfully uninstalled package ${packageName}`, 'success');
+            return notify('Uninstalled Package', `Successfully uninstalled package ${packageName}`, 'success');
+        } catch (ex) {
+            const msg = `Error uninstalling package ${packageName}`;
 
-                resolve('success');
-            } catch (ex) {
-                const msg = `Error uninstalling package ${packageName}`;
+            console.error(msg, ex);
 
-                console.error(msg, ex);
-
-                notify('Uninstalling Package', msg, 'error');
-
-                reject('failure')
-            }
-        });
+            return notify('Uninstalling Package', msg, 'error');
+        }
     }
 
-    function updatePackage(packageName: string, version: string) {
-        return new Promise(async (resolve, reject) => {
-            try {
-                await Dataservice.updatePackage(packageName, version, undefined);
+    async function updatePackage(packageName: string, version: string) {
+        try {
+            await Dataservice.updatePackage(packageName, version, undefined);
 
-                props.reRenderPackages();
+            props.reRenderPackages();
 
-                resolve(
-                    notify('Updgraded the package', `Successfully upgraded package ${packageName}`, 'success')
-                );
-            } catch (ex) {
-                const msg = `Error upgrading package ${packageName} to the latest version`;
+            return notify('Updgraded the package', `Successfully upgraded package ${packageName}`, 'success');
+        } catch (ex) {
+            const msg = `Error upgrading package ${packageName} to the latest version`;
 
-                console.error(msg, ex);
+            console.error(msg, ex);
 
-                reject(
-                    notify('Upgrading the package', msg, 'error')
-                )
-            }
-        });
+            return notify('Upgrading the package', msg, 'error');
+        }
     }
 
     return (

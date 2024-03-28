@@ -5,8 +5,8 @@ import NopalmLogoImg from '../assets/nopalm.svg';
 import './NopalmLogo.scss';
 
 interface NopalmLogoProps {
-    includeTitle?: Boolean
-};
+    includeTitle?: boolean
+}
 
 const NopalmLogo: React.FC<NopalmLogoProps> = (props: NopalmLogoProps) => {
     return (

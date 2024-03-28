@@ -15,18 +15,20 @@ import './App.scss';
 
 import NopalmLogo from './logos/NopalmLogo';
 
-import SocialMediaLinks from './components/SocialMediaLinks';
+// import SocialMediaLinks from './components/SocialMediaLinks';
 
-import { AppProps } from './helpers/types';
+import { AppProps, SettingsResultProps } from './helpers/types';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Sider } = Layout;
 
 type MenuItem = Required<MenuProps>['items'][number];
 
-const routesToPages: any = {
+const routesToPages: {
+ [key: string]: (settings: SettingsResultProps, reflectUpdatedUserSettings?: () => void ) => JSX.Element
+} = {
   project_details: (settings) => <ProjectDetails settings={settings} />,
   packages: (settings) => <Packages settings={settings} />,
-  settings: (settings, reflectUpdatedUserSettings) => <Settings settings={settings}  reflectUpdatedUserSettings={reflectUpdatedUserSettings}/>,
+  settings: (settings, reflectUpdatedUserSettings) => <Settings settings={settings} reflectUpdatedUserSettings={reflectUpdatedUserSettings}/>,
 };
 
 function getMenuItem(

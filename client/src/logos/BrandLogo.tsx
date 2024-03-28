@@ -20,7 +20,7 @@ const imageLogos = {
 
 interface BrandLogoProps {
     name: string,
-};
+}
 
 const BrandLogo: React.FC<BrandLogoProps> = (props: BrandLogoProps) => {
     return (

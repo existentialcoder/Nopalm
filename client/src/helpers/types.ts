@@ -63,7 +63,7 @@ export type QuestionObject = {
 
 export interface QuestionProps {
     questionObj: QuestionObject;
-    answerHandler: (value: string, options: any, questionName: string) => void;
+    answerHandler: (value: string, options: Option[], questionName: string) => void;
 }
 
 export interface PackageProps {
@@ -83,8 +83,8 @@ export interface InstalledPackageProps extends PackageProps {
 interface PackageExplorerPropsInterface {
     projectName: string,
     projectDescription: string,
-    reRenderPackages: Function,
-    setIsPackagesSaveLoading: Function
+    reRenderPackages: () => void,
+    setIsPackagesSaveLoading: () => void
 }
 
 export interface PackageExplorerRef {
@@ -97,13 +97,13 @@ export type PackageExplorerProps = PackageExplorerPropsInterface & React.RefAttr
 
 export interface PackageCardProps {
     loading: boolean,
-    reRenderPackages: Function,
+    reRenderPackages: () => void,
     package: InstalledPackageProps,
     installed: boolean,
     versions: string[],
     accentColor: AccentColors,
     isPackageSelectedToInstall?: boolean,
-    modifyListOfPackagesToInstall: Function,
+    modifyListOfPackagesToInstall: () => void,
 }
 
 export interface ProjectDetailsProps {

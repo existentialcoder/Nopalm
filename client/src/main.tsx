@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-import ReactDOM from 'react-dom/client';
-
 import { BrowserRouter } from 'react-router-dom';
 
 import * as colors from '@ant-design/colors';
@@ -17,6 +15,7 @@ import Dataservice from './api/Dataservice.ts';
 const { defaultAlgorithm, darkAlgorithm, getDesignToken } = theme;
 
 const Main: React.FC = () => {
+  console.log(import.meta.env.REACT_APP_API_BASE_URL)
   const [globalSettings, setGlobalSettings] = useState('');
 
   const [isDark, setIsDark] = useState<boolean>(false);
@@ -99,4 +98,4 @@ const Main: React.FC = () => {
   )
 };
 
-ReactDOM.createRoot(document.getElementById('root')!).render(<Main />);
+export default Main;

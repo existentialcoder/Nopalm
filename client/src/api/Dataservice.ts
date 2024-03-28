@@ -1,8 +1,4 @@
-// Testing
-const API_BASE_URL = 'http://localhost:8001/api';
-
-// Actual
-// const API_BASE_URL = '/api'
+const API_BASE_URL = import.meta.env.VITE_APP_API_BASE_URL;
 
 import { InstalledPackageProps, ProjectDetailsProps, SettingsResultProps } from '../helpers/types';
 

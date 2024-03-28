@@ -46,9 +46,9 @@ const PackageExplorer: React.FC<PackageExplorerProps> = forwardRef((props: Packa
         setEmptyPackageList(result.length === 0);
 
         setSearchResults(result);
-    };
+    }
 
-    const onSearch: SearchProps['onSearch'] = async (value, _e, info) => {
+    const onSearch: SearchProps['onSearch'] = async (value) => {
         setSearchQuery(value);
         setSearchClicked(true);
         setSearchResultsLoading(true);
@@ -87,8 +87,8 @@ const PackageExplorer: React.FC<PackageExplorerProps> = forwardRef((props: Packa
     }
 
     const onSaveClickHandler = async () => {
-        await Promise.all(listOfPackagesToInstall.map
-            (pkg => Dataservice.installPackage(pkg.name, pkg.version_to_install || '', pkg.is_dev || false))
+        await Promise.all(listOfPackagesToInstall.map(
+            pkg => Dataservice.installPackage(pkg.name, pkg.version_to_install || '', pkg.is_dev || false))
         );
 
         notify('Installed Packages', 'Successfully installed list of packages', 'success');

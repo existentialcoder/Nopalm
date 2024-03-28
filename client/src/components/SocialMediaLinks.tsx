@@ -2,12 +2,12 @@ import React from 'react';
 
 import './SocialMediaLinks.scss';
 
-import {
+import Icon, {
     GithubFilled, FacebookFilled, LinkedinFilled
 } from '@ant-design/icons';
 
 type SocialMediaData = {
-    icon: any,
+    icon: typeof Icon,
     label: string,
     linkSrc: string
 };
